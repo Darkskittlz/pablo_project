@@ -387,12 +387,6 @@ export default function Background() {
       "stroke": {
         "width": 0
       },
-      "zIndex": {
-        "value": 0,
-        "opacityRate": 1,
-        "sizeRate": 1,
-        "velocityRate": 1
-      },
       "destroy": {
         "bounds": {},
         "mode": "none",
