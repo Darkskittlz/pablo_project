@@ -33,9 +33,9 @@ const FormContainer = styled.div`
 
   input {
     margin-bottom: 10px;
-    padding: 7px;
+    padding: 10px;
     text-align: center;
-    height: 20px;
+    height: 40px;
     margin-top: 30px;
     width: 100%;
     font-size: 20px;
@@ -235,15 +235,13 @@ const Form = () => {
                 onChange={handleFileChange}
               />
             ) : (
-              // Only render the first field on mobile breakpoints
-              currentStep === 0 && (
-                <input
-                  name={fields[currentStep]}
-                  placeholder={`Enter your ${fields[currentStep]}`}
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                />
-              )
+              // Render input for the current step dynamically
+              <input
+                name={fields[currentStep]}
+                placeholder={`Enter your ${fields[currentStep]}`}
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+              />
             )}
             <ButtonContainer>
               <button
