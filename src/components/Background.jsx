@@ -34,7 +34,7 @@ export default function Background() {
       "color": {
         "value": "#000000"
       },
-      "image": "url('https://i.pinimg.com/originals/d0/dc/03/d0dc03ae99d031e4db438fb3bfa38f21.gif')",
+      "image": "url('https://github.com/Darkskittlz/pablo_project/blob/main/src/Assets/sunGif1.gif?raw=true')",
       "position": "-5% -10%",
       "repeat": "no-repeat",
       "size": "20%",
