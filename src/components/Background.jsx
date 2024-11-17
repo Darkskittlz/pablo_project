@@ -55,7 +55,6 @@ export default function Background() {
     "delay": 0,
     "fullScreen": {
       "enable": true,
-      "zIndex": 0
     },
     "detectRetina": true,
     "duration": 0,
