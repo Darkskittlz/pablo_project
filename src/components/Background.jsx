@@ -34,10 +34,10 @@ export default function Background() {
       "color": {
         "value": "#000000"
       },
-      "image": "url('https://github.com/Darkskittlz/pablo_project/blob/main/src/Assets/sunGif1.gif?raw=true')",
-      "position": "-5% -10%",
+      "image": "url('https://github.com/Darkskittlz/pablo_project/blob/main/src/Assets/sunGif3.gif?raw=true)",
+      "position": "0% 0%",
       "repeat": "no-repeat",
-      "size": "20%",
+      "size": "30%",
       "opacity": 1,
     },
     "backgroundMask": {

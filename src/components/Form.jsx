@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
 import styled, { keyframes, css } from 'styled-components';
-import * as THREE from 'three';
 import "../App.css"
 import ConfettiExplosion from "react-confetti-explosion";
+import Sprightful from "../Assets/sprightful.png";
+import Bulb from "../Assets/bulb.png";
 
 
 const FlexContainer = styled.div`
@@ -14,13 +15,14 @@ const FlexContainer = styled.div`
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 15%;
+  margin-top: 13%;
   backdrop-filter: blur(5px);
   border-radius: 10px;
-  padding: 50px;
-  border: 1px solid white;
-  box-shadow: 0 0 10px white;
+  padding: 20px;
+  border: 1px solid grey;
+  box-shadow: 0 0 25px grey;
   justify-content: center;
+  align-items: center;
 
   form {
     display: flex;
@@ -35,28 +37,34 @@ const FormContainer = styled.div`
     text-align: center;
     height: 20px;
     margin-top: 30px;
-    width: 60%;
+    width: 100%;
     font-size: 20px;
     border-radius: 4px;
   }
+
+  img {
+    margin-bottom: 10px;
+  }
+
+@media 
 `
 
 const Animation = keyframes`
-  0% { box-shadow: 0 0 20px #bbdefb; }
-  30% { box-shadow: 0 0 20px #2196f3; }
-  50% { box-shadow: 0 0 20px #1976d2; }
-  70% { box-shadow: 0 0 20px #0d47a1; }
-  100% { box-shadow: 0 0 30px #000000; }
-`
+  0% { box-shadow: 0 0 30px #f44336 }
+  20% { box-shadow: 0 0 30px #e57373 }
+  40% { box-shadow: 0 0 30px #ff7043 }
+  60% { box-shadow: 0 0 30px #ff5722 }
+  80% { box-shadow: 0 0 30px #ff9800 }
+  100% { box-shadow: 0 0 30px #f44336 }
+`;
 
 const ButtonContainer = styled.div`
   border-radius: 10px;
   backdrop-filter: blur(10px);
   background-color: rgba(255, 255, 255, 0.08);
-  animation-name: ${Animation};
   animation-duration: 4s;
   animation-iteration-count: infinite;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 20px #ffffff;
   margin-top: 20px;
   padding: 20px;
   backdrop-filter: blur(30px);
@@ -80,8 +88,9 @@ const ButtonContainer = styled.div`
 
 const ProgressContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
 `;
 
 const ProgressItem = styled.div`
@@ -129,12 +138,12 @@ const Form = () => {
     address: '',
     energyBill: null,
   });
-  const [isExploding, setIsExploding] = useState(false);
   const confettiRef = useRef(null);
   const [confettiSteps, setConfettiSteps] = useState(
     Array(fields.length).fill(false)
   );
   const timeoutRef = useRef(null);
+  const [mobileHidden, setMobileHidden] = useState(window.innerWidth > 900);
 
   const handleNext = () => {
     const fieldName = fields[currentStep];
@@ -190,61 +199,66 @@ const Form = () => {
 
 
   return (
-    <FlexContainer>
-      <FormContainer>
-        <img
-          style={{ height: "120px" }}
-          src="https://static.wixstatic.com/media/d58111_66919cf954ee4f05a2dec4f038c78aaa~mv2.png/v1/fill/w_187,h_37,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/d58111_66919cf954ee4f05a2dec4f038c78aaa~mv2.png"
-        />
-        <br />
-        <ProgressContainer>
-          {fields.map((field, index) => (
-            <ProgressItem
-              key={field}
-              onClick={() => handleProgressClick(index)}
-              completed={index < currentStep}
-              isActive={index === currentStep}
-              style={{ cursor: index < currentStep ? 'pointer' : 'default' }}
-            >
-              {formData[field] && field}
-              <br />
-              {index < currentStep ? formData[field] : field}
-              {confettiSteps[index] && (
-                <ConfettiExplosion {...bigExplodeProps} />
-              )}
-            </ProgressItem>
-          ))}
-        </ProgressContainer>
-        <form onKeyDown={handleKeyDown}>
-          {currentStep === fields.length - 1 ? (
-            <input
-              style={{ color: "white" }}
-              type="file"
-              name="energyBill"
-              accept="application/pdf"
-              onChange={handleFileChange}
-            />
-          ) : (
-            <input
-              name={fields[currentStep]}
-              placeholder={`Enter your ${fields[currentStep]}`}
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-            />
-          )}
-          <ButtonContainer>
-            <button
-              ref={confettiRef}
-              type="button"
-              onClick={handleNext}
-              disabled={currentStep === fields.length - 1 && !formData.energyBill && !inputValue.trim()}
-            >
-              {currentStep === fields.length - 1 ? 'Submit' : 'Next'}
-            </button>
-          </ButtonContainer>
-        </form>
-      </FormContainer>
-    </FlexContainer>
+    <>
+      <FlexContainer>
+        <FormContainer>
+          <img
+            style={{ height: "120px", width: "120px" }}
+            src={Bulb}
+          />
+          <br />
+          <ProgressContainer>
+            {fields.map((field, index) => (
+              <ProgressItem
+                key={field}
+                onClick={() => handleProgressClick(index)}
+                completed={index < currentStep}
+                isActive={index === currentStep}
+                style={{ cursor: index < currentStep ? 'pointer' : 'default' }}
+              >
+                {formData[field] && field}
+                <br />
+                {index < currentStep ? formData[field] : field}
+                {confettiSteps[index] && (
+                  <ConfettiExplosion {...bigExplodeProps} />
+                )}
+              </ProgressItem>
+            ))}
+          </ProgressContainer>
+          <form onKeyDown={handleKeyDown}>
+            {currentStep === fields.length - 1 ? (
+              <input
+                style={{ color: "white" }}
+                type="file"
+                name="energyBill"
+                accept="application/pdf"
+                onChange={handleFileChange}
+              />
+            ) : (
+              // Only render the first field on mobile breakpoints
+              currentStep === 0 && (
+                <input
+                  name={fields[currentStep]}
+                  placeholder={`Enter your ${fields[currentStep]}`}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                />
+              )
+            )}
+            <ButtonContainer>
+              <button
+                ref={confettiRef}
+                type="button"
+                onClick={handleNext}
+                disabled={currentStep === fields.length - 1 && !formData.energyBill && !inputValue.trim()}
+              >
+                {currentStep === fields.length - 1 ? 'Submit' : 'Next'}
+              </button>
+            </ButtonContainer>
+          </form>
+        </FormContainer>
+      </FlexContainer>
+    </>
   )
 }
 
