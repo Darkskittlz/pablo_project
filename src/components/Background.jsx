@@ -32,13 +32,13 @@ export default function Background() {
     "autoPlay": true,
     "background": {
       "color": {
-        "value": "#232741"
+        "value": "#000000"
       },
-      "image": url(""),
-      "position": "50% 50%",
+      "image": "url('https://i.pinimg.com/originals/d0/dc/03/d0dc03ae99d031e4db438fb3bfa38f21.gif')",
+      "position": "-5% -10%",
       "repeat": "no-repeat",
       "size": "20%",
-      "opacity": 1
+      "opacity": 1,
     },
     "backgroundMask": {
       "composite": "destination-out",
