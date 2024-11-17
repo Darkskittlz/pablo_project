@@ -35,9 +35,9 @@ export default function Background() {
         "value": "#000000"
       },
       "image": "url('https://github.com/Darkskittlz/pablo_project/blob/main/src/Assets/sunGif3.gif?raw=true)",
-      "position": "0% 0%",
+      "position": "-4% 0%",
       "repeat": "no-repeat",
-      "size": "30%",
+      "size": "25%",
       "opacity": 1,
     },
     "backgroundMask": {
